@@ -1,0 +1,44 @@
+[package]
+name = "my-single-thread-embedded"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "An embedded Rust project with single-thread design"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["embedded", "single-thread", "rust"]
+categories = ["embedded", "no-std"]
+
+[dependencies]
+# 移除多线程依赖
+# rayon = "1.5.1"
+# tokio = "1.21.2"
+# crossbeam = "0.8.2"
+
+# 保留必要的单线程依赖
+log = "0.4.17"
+defmt = "0.3.2"
+
+# 嵌入式支持
+embedded-hal = "0.2.7"
+nb = "1.0.0"
+
+[features]
+default = []
+std = []  # 启用标准库支持
+debug = []  # 调试功能
+release = []  # 发布功能
+
+[profile.dev]
+panic = "abort"
+lto = true
+codegen-units = 1
+debug = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1
+debug = true
+opt-level = "s"

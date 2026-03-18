@@ -1,0 +1,48 @@
+[package]
+name = "my-embedded-project"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "An embedded Rust project"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["embedded", "no-std", "rust"]
+categories = ["embedded", "no-std"]
+
+[dependencies]
+# 基本依赖
+alloc = { version = "0.0.0", features = ["rustc-std-alloc"] }
+
+# 嵌入式支持
+embedded-hal = "0.2.7"
+nb = "1.0.0"
+
+# 日志
+defmt = "0.3.2"
+log = { version = "0.4.17", optional = true }
+
+# 内存管理
+linked-list-allocator = "0.9.0"
+
+# 并发
+spin = "0.9.8"
+
+[features]
+default = []
+std = []  # 启用标准库支持
+debug = []  # 调试功能
+release = []  # 发布功能
+
+[profile.dev]
+panic = "abort"
+lto = true
+codegen-units = 1
+debug = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1
+debug = true
+opt-level = "s"

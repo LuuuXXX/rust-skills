@@ -1,0 +1,23 @@
+# 示例素材文件
+
+此占位符表示存储素材文件的位置。
+根据实际需要替换为真实素材文件（模板、图片、字体等）或删除此文件。
+
+素材文件不用于加载到上下文，而是在 Claude 生成的输出中使用。
+
+其他技能的素材文件示例：
+- 品牌指南：logo.png、slides_template.pptx
+- 前端构建器：包含 HTML/React 模板的 hello-world/ 目录
+- 字体：custom-font.ttf、font-family.woff2
+- 数据：sample_data.csv、test_dataset.json
+
+## 常见素材类型
+
+- 模板：.pptx、.docx、模板目录
+- 图片：.png、.jpg、.svg、.gif
+- 字体：.ttf、.otf、.woff、.woff2
+- 模板代码：项目目录、启动文件
+- 图标：.ico、.svg
+- 数据文件：.csv、.json、.xml、.yaml
+
+注意：这是文本占位符。实际素材可以是任何文件类型。

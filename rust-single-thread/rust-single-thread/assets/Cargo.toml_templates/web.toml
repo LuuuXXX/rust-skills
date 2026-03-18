@@ -1,0 +1,45 @@
+[package]
+name = "my-single-thread-web"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "A web application with single-thread design"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["web", "single-thread", "rust"]
+categories = ["web-programming", "single-thread"]
+
+[dependencies]
+# 移除多线程依赖
+# rayon = "1.5.1"
+# tokio = "1.21.2"
+# crossbeam = "0.8.2"
+
+# 保留必要的单线程依赖
+log = "0.4.17"
+anyhow = "1.0.66"
+
+# Web框架
+actix-web = "4.2.1"
+serde = { version = "1.0.144", features = ["derive"] }
+serde_json = "1.0.85"
+
+[features]
+default = []
+std = []  # 启用标准库支持
+debug = []  # 调试功能
+release = []  # 发布功能
+
+[profile.dev]
+panic = "unwind"
+lto = true
+codegen-units = 1
+debug = true
+opt-level = "0"
+
+[profile.release]
+panic = "unwind"
+lto = true
+codegen-units = 1
+debug = false
+opt-level = "3"

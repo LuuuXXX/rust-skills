@@ -1,0 +1,54 @@
+[package]
+name = "my-wasm-project"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "A WebAssembly Rust project"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["wasm", "webassembly", "no-std", "rust"]
+categories = ["wasm", "no-std"]
+
+[dependencies]
+# 基本依赖
+alloc = { version = "0.0.0", features = ["rustc-std-alloc"] }
+
+# WebAssembly 支持
+wasm-bindgen = "0.2.83"
+js-sys = "0.3.60"
+web-sys = "0.3.60"
+
+# 序列化
+postcard = { version = "1.0.4", features = ["alloc"] }
+
+# 加密
+aes = "0.8.3"
+crypto-common = "0.1.6"
+
+[features]
+default = []
+std = []  # 启用标准库支持
+debug = []  # 调试功能
+release = []  # 发布功能
+
+[target.wasm32-unknown-unknown]
+rustflags = [
+    "-C", "link-arg=--export-table",
+    "-C", "link-arg=--export-dynamic",
+]
+
+[profile.dev]
+lto = true
+opt-level = 0
+debug = true
+debug-assertions = true
+overflow-checks = true
+codegen-units = 16
+
+[profile.release]
+lto = true
+opt-level = "z"
+codegen-units = 1
+debug = false
+debug-assertions = false
+overflow-checks = false
